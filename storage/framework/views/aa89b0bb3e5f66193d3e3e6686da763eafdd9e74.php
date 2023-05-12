@@ -14,7 +14,11 @@
         <link rel="stylesheet" href="<?php echo e(asset('css/app.css')); ?>">
 
         <!-- Scripts -->
+
         <script src="<?php echo e(asset('js/app.js')); ?>" defer></script>
+        <script src="https://js.stripe.com/v3" ></script>
+
+
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
