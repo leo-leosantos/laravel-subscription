@@ -20,14 +20,12 @@
 
             @include('home._partials.features')
 
-
+            @include('home._partials.plans',['plans'=>$plans])
 
             @include('home._partials.contact')
         </main>
         @include('home._partials.footer')
     </div>
-
-    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 
 </html>

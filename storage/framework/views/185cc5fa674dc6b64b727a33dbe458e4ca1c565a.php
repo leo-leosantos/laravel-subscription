@@ -16,6 +16,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
 
+                    <label for="">Assinando : <?php echo e($plan->name); ?></label>
                     <form action="<?php echo e(route('subscriptions.store')); ?>" method="post" id="form">
                         <?php echo csrf_field(); ?>
                         <div class="col-span-6 sm:col-span-4 py-2">

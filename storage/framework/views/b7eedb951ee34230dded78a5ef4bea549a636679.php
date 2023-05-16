@@ -20,14 +20,12 @@
 
             <?php echo $__env->make('home._partials.features', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-
+            <?php echo $__env->make('home._partials.plans',['plans'=>$plans], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
             <?php echo $__env->make('home._partials.contact', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         </main>
         <?php echo $__env->make('home._partials.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     </div>
-
-    <script src="<?php echo e(asset('js/app.js')); ?>"></script>
 </body>
 
 </html>
