@@ -11,7 +11,7 @@ class SiteController extends Controller
 
     public function __construct(Plan $plan)
     {
-            $this->plan = $plan;
+        $this->plan = $plan;
     }
 
     public function index()
@@ -29,14 +29,15 @@ class SiteController extends Controller
 
 
 
-        if(! $plan)
-        {
+        if (!$plan) {
             return redirect()->route('site.home');
         }
 
         session()->put('plan', $plan);
 
-            return redirect()->route('subscriptions.checkout');
-
+        return redirect()->route('subscriptions.checkout');
     }
+
+
+
 }

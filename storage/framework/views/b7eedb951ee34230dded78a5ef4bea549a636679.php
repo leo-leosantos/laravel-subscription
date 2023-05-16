@@ -26,6 +26,8 @@
         </main>
         <?php echo $__env->make('home._partials.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     </div>
+
+    <script src="<?php echo e(asset('js/app.js')); ?>"></script>
 </body>
 
 </html>
