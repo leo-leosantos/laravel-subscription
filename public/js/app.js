@@ -4023,7 +4023,45 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      preloader: false,
+      formData: {
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      },
+      messageSuccess: '',
+      messageFail: ''
+    };
+  },
+  methods: {
+    sendContact: function sendContact() {
+      var _this = this;
+      this.messageSuccess = '';
+      this.messageFail = '';
+      this.preloader = true;
+      axios.post('/api/contact', this.formData).then(function (response) {
+        return _this.messageSuccess = 'Contato Enviado com Sucesso';
+      })["catch"](function (error) {
+        return _this.messageFail = 'Falha ao enviar contato';
+      })["finally"](function () {
+        _this.preloader = false;
+        _this.reset();
+      });
+    },
+    reset: function reset() {
+      this.formData = {
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      };
+    }
+  }
+});
 
 /***/ }),
 
@@ -4042,21 +4080,143 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _vm._m(0);
-};
-var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
   return _c("form", {
     staticClass: "form mt-10",
     attrs: {
       action: ""
+    },
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+        return _vm.sendContact.apply(null, arguments);
+      }
     }
   }, [_c("div", {
     staticClass: "form__row"
   }, [_c("div", {
     staticClass: "form__input-group"
+  }, [_vm._m(0), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formData.name,
+      expression: "formData.name"
+    }],
+    staticClass: "form__input",
+    attrs: {
+      id: "name",
+      autocomplete: "false",
+      tabindex: "0"
+    },
+    domProps: {
+      value: _vm.formData.name
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.formData, "name", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "form__row"
   }, [_c("div", {
+    staticClass: "form__input-group"
+  }, [_vm._m(1), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formData.email,
+      expression: "formData.email"
+    }],
+    staticClass: "form__input",
+    attrs: {
+      id: "email",
+      name: "email",
+      autocomplete: "false",
+      tabindex: "0",
+      required: ""
+    },
+    domProps: {
+      value: _vm.formData.email
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.formData, "email", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "form__row"
+  }, [_c("div", {
+    staticClass: "form__input-group"
+  }, [_vm._m(2), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formData.subject,
+      expression: "formData.subject"
+    }],
+    staticClass: "form__input",
+    attrs: {
+      id: "subject",
+      name: "subject",
+      autocomplete: "false",
+      tabindex: "0",
+      required: ""
+    },
+    domProps: {
+      value: _vm.formData.subject
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.formData, "subject", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "form__row"
+  }, [_c("div", {
+    staticClass: "form__input-group"
+  }, [_vm._m(3), _c("textarea", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.formData.message,
+      expression: "formData.message"
+    }],
+    staticClass: "form__input",
+    attrs: {
+      id: "message",
+      name: "message",
+      rows: "4",
+      required: ""
+    },
+    domProps: {
+      value: _vm.formData.message
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.formData, "message", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "mt-6 pt-3 text-center"
+  }, [_c("button", {
+    staticClass: "button button--filled button--primary",
+    "class": {
+      "cursor-not-allowed": _vm.preloader
+    },
+    attrs: {
+      type: "submit",
+      disabled: _vm.preloader
+    }
+  }, [_vm.preloader ? _c("span", [_vm._v("Enviando...")]) : _c("span", [_vm._v("Enviar")])])]), _vm._v(" "), _vm.messageSuccess ? _c("div", [_vm._v("\n                        " + _vm._s(_vm.messageSuccess) + "\n                    ")]) : _vm._e(), _vm._v(" "), _vm.messageFail ? _c("div", [_vm._v("\n                        " + _vm._s(_vm.messageFail) + "\n                    ")]) : _vm._e()]);
+};
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "form__label-group"
   }, [_c("p", [_c("label", {
     attrs: {
@@ -4066,18 +4226,11 @@ var staticRenderFns = [function () {
     attrs: {
       title: "Obrigatório"
     }
-  }, [_vm._v("*")])])])]), _c("input", {
-    staticClass: "form__input",
-    attrs: {
-      id: "name",
-      autocomplete: "false",
-      tabindex: "0"
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "form__row"
-  }, [_c("div", {
-    staticClass: "form__input-group"
-  }, [_c("div", {
+  }, [_vm._v("*")])])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "form__label-group"
   }, [_c("p", [_c("label", {
     attrs: {
@@ -4087,20 +4240,11 @@ var staticRenderFns = [function () {
     attrs: {
       title: "Obrigatório"
     }
-  }, [_vm._v("*")])])])]), _c("input", {
-    staticClass: "form__input",
-    attrs: {
-      id: "email",
-      name: "email",
-      autocomplete: "false",
-      tabindex: "0",
-      required: ""
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "form__row"
-  }, [_c("div", {
-    staticClass: "form__input-group"
-  }, [_c("div", {
+  }, [_vm._v("*")])])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "form__label-group"
   }, [_c("p", [_c("label", {
     staticClass: "subject",
@@ -4111,20 +4255,11 @@ var staticRenderFns = [function () {
     attrs: {
       title: "Obrigatório"
     }
-  }, [_vm._v("*")])])])]), _c("input", {
-    staticClass: "form__input",
-    attrs: {
-      id: "subject",
-      name: "subject",
-      autocomplete: "false",
-      tabindex: "0",
-      required: ""
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "form__row"
-  }, [_c("div", {
-    staticClass: "form__input-group"
-  }, [_c("div", {
+  }, [_vm._v("*")])])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "form__label-group"
   }, [_c("p", [_c("label", {
     staticClass: "bg-white text-gray-600 px-1",
@@ -4135,22 +4270,7 @@ var staticRenderFns = [function () {
     attrs: {
       title: "Obrigatório"
     }
-  }, [_vm._v("*")])])])]), _c("textarea", {
-    staticClass: "form__input",
-    attrs: {
-      id: "message",
-      name: "message",
-      rows: "4",
-      required: ""
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "mt-6 pt-3 text-center"
-  }, [_c("button", {
-    staticClass: "button button--filled button--primary",
-    attrs: {
-      type: "submit"
-    }
-  }, [_vm._v("Enviar")])])]);
+  }, [_vm._v("*")])])])]);
 }];
 render._withStripped = true;
 

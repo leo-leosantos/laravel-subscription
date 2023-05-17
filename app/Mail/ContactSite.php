@@ -24,11 +24,7 @@ class ContactSite extends Mailable
         $this->data = $data;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
+
     public function build()
     {
         return $this->markdown('emails.site.contact')

@@ -14,5 +14,7 @@ class ContactController extends Controller
      {
         Mail::send( New ContactSite($request->all()));
 
+        return response()->json(['message'=>'success']);
+
     }
 }

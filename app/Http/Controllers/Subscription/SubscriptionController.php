@@ -49,11 +49,11 @@ class SubscriptionController extends Controller
 
     public function account()
     {
-
+        $user = auth()->user();
         $invoices = auth()->user()->invoices();
+        $subscription = $user->subscription('default');
 
-
-        return view('subscriptions.account', compact('invoices'));
+        return view('subscriptions.account', compact('invoices','user', 'subscription'));
     }
 
 
